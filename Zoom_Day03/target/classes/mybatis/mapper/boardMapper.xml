@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.Board">
+	<!-- 특정 글 번호에 글의 내용을 리턴하는 select 생성 -->
+	<select id="selectByNo" parameterType="int" resultType="board">
+		select * from board where no=#{no} <!-- 그냥 값 하나면 이름 상관 없어요 -->
+	</select>
+
+	<!-- 특정 사용자가 작성한 글 목록 리턴 -->
+	<select id="selectByUser" parameterType="String" resultType="board">
+		select * from board where userid=#{userid}
+	</select>
+	
+	<!-- 모든 글 목록을 리턴 -->
+	<select id="selectAll" resultMap="basicBoardMap">
+		select * from board
+	</select>
+	
+	<!-- 보드 삽입 -->
+	<insert id="insert" parameterType="board">
+		<selectKey keyProperty="no" resultType="int" order="AFTER">
+			select max(no) from board
+		</selectKey>
+		insert into board (userid, content) values(#{userid}, #{content})
+	</insert>
+	
+	<!-- 가장 안전한 것은 한땀 한땀 매핑 시켜주는 것.. -->
+	<resultMap type="board" id="basicBoardMap">
+		<id column="no" property="no"></id>
+		<result column="userid" property="userid"/>
+		<result column="content" property="content"/>
+	</resultMap>
+</mapper>

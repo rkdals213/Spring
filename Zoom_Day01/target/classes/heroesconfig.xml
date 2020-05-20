@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<context:component-scan base-package="heros.beans"></context:component-scan>
+
+	<!-- 
+	<bean class="heros.beans.IronMan" id="iman"></bean>
+	<bean class="heros.beans.HulkBuster" id="hb"></bean>
+	
+	<bean class="heros.beans.Heroes" id="heroes">
+		<constructor-arg>
+			<ref bean="iman" />
+		</constructor-arg>
+		<property name="hulkBuster" ref="hb"></property>
+	</bean>
+ 	-->
+</beans>
