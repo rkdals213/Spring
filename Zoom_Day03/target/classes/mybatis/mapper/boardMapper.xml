@@ -32,4 +32,15 @@
 		<result column="userid" property="userid"/>
 		<result column="content" property="content"/>
 	</resultMap>
+	
+	<!-- 특정 글 번호에 글의 내용을 자세히 조회해보자(사용자 정보화 함께) -->
+	<select id="selectDetail" parameterType="int" resultMap="boardDetail">
+		select b.*, u.* from board b join userinfo3 u using (userid) where b.no=#{no};
+	</select>
+	
+	<resultMap type="board" id="boardDetail" extends="basicBoardMap">	
+		<association property="user" column="userid" javaType="user" resultMap="com.ssafy.mapper.UserInfo.userBasic"> 
+		</association>
+	</resultMap>
+	
 </mapper>

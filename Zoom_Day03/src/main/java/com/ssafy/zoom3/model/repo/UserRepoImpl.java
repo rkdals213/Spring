@@ -25,4 +25,9 @@ public class UserRepoImpl implements UserRepo{
 		return template.selectList(ns+"selectAll");
 	}
 
+	@Override
+	public UserInfo selectDetail(String userId) {
+		return template.selectOne(ns+"selectDetail", userId);
+	}
+
 }

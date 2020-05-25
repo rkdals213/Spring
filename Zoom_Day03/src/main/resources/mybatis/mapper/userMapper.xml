@@ -13,4 +13,21 @@
 		select *
 		from userinfo3
 	</select>
+	
+	<resultMap type="user" id="userBasic">
+		<id column="userid" property="userid"></id>
+		<result column="pass" property="pass" />
+	</resultMap>
+	
+	<select id="selectDetail" parameterType="string" resultMap="userDetail">
+		select u.*, b.*
+		from userinfo3 u
+		left join board b using (userid)
+		where userid=#{userid};
+	</select>
+	
+	<!-- userInfo3와 board의 1:N 관계 처리용 -->
+	<resultMap type="user" id="userDetail" extends="userBasic">
+		<collection property="boards" ofType="board" resultMap="com.ssafy.mapper.Board.basicBoardMap"></collection>
+	</resultMap>
 </mapper>

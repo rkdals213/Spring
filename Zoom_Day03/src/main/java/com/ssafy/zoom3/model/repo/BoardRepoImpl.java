@@ -18,5 +18,11 @@ public class BoardRepoImpl implements BoardRepo {
 	public int insert(Board board) {
 		return temp.insert(ns+"insert", board);
 	}
+
+	@Override
+	public Board selectDetail(int boardno) {
+		
+		return temp.selectOne(ns+"selectDetail", boardno);
+	}
 	
 }
