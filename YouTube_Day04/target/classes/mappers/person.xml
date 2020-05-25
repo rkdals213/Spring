@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- mappers/person.xml -->
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="person"> <!-- mybatis는 namespace필수!! -->
+   
+   <!-- no,name,age,job
+              번호, 이름, 나이, 직업 -->
+   
+   <!-- 사람 입력 -->
+   <insert id="insert" >
+       insert into person (name,age,job) 
+       values (#{name},#{age},#{job}) 
+   </insert>
+   
+   <!-- 전체 사람 조회 -->
+   <select id="selectAll" resultType="Person"> 
+   <!-- parameterType속성 생략, resultType속성 필수!! -->
+       select no,name,age,job
+       from person
+       order by no desc 
+   </select>
+   
+   
+   
+   <!-- (수정폼에 출력할) 사람 조회 -->
+   <select id="select" resultType="Person">
+       select no,name,age,job
+       from person
+       where no=#{no}
+   </select>
+   
+   <!-- (수정폼에 입력된) 사람 수정 -->
+   <update id="update">
+       update person
+       set name=#{name}, age=#{age}, job=#{job}
+       where no=#{no}
+   </update>
+   
+   <!-- (번호로 구분하는 )사람 삭제 -->
+   <delete id="delete">
+       delete from person
+       where no=#{no}
+   </delete>
+   
+</mapper>    
+    
+    
+    
+    
+    
+    
