@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserInfo {
 	private String userid;
-	private String pass;	
-	
+	private String pass;
+
+	private List<Board> boards;
+
 	public UserInfo(String userid, String pass) {
 		super();
 		this.userid = userid;
 		this.pass = pass;
 	}
-
-	private List<Board> boards;
 }

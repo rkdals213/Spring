@@ -14,26 +14,25 @@ import com.ssafy.zoom3.model.repo.UserRepo;
 import com.ssafy.zoom3.model.service.UserService;
 
 @Configuration
-// backend 서비스와 관련된 설정
+// 백엔드 서비스와관련된 설정
 @ComponentScan(basePackageClasses = {UserRepo.class, UserService.class})
 public class ApplicationConfig {
+
 	@Bean
 	public SqlSessionFactoryBean sqlSessionFactoryBean(DataSource ds) {
 		SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
 		factoryBean.setDataSource(ds);
 		String configLoc = "classpath:/mybatis/mybatis_config.xml";
 		factoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(configLoc));
-		
 		return factoryBean;
 	}
 
 	@Bean
-	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactoryBean sfb) throws Exception{
+	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactoryBean sfb) throws Exception {
 		SqlSessionTemplate template = new SqlSessionTemplate(sfb.getObject());
-		
 		return template;
 	}
-	
+
 	@Bean
 	public DataSource ds() {
 		DriverManagerDataSource ds = new DriverManagerDataSource();
@@ -41,7 +40,7 @@ public class ApplicationConfig {
 		ds.setUrl("jdbc:mysql://127.0.0.1:3306/ssafydb?serverTimezone=UTC");
 		ds.setUsername("ssafy");
 		ds.setPassword("ssafy");
-		
 		return ds;
 	}
+
 }

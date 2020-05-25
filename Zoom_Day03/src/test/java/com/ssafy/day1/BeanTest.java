@@ -24,6 +24,7 @@ import com.ssafy.zoom3.model.repo.UserRepo;
 @ContextConfiguration(classes = ApplicationConfig.class)
 public class BeanTest {
 	
+
 	static Logger logger = LoggerFactory.getLogger(BeanTest.class);
 	
 	@Autowired
@@ -32,6 +33,7 @@ public class BeanTest {
 	@Autowired
 	SqlSessionTemplate temp;
 	
+	
 	@Autowired
 	UserRepo urepo;
 	
@@ -39,9 +41,7 @@ public class BeanTest {
 	public void test() throws SQLException {
 		assertThat(ds, is(notNullValue()));
 		assertThat(temp, is(notNullValue()));
-		
-		logger.debug("db확인 : {}", ds.getConnection());
-		
+		logger.debug("db 확인: {}", ds.getConnection());
 		assertThat(urepo, is(notNullValue()));
 	}
 	

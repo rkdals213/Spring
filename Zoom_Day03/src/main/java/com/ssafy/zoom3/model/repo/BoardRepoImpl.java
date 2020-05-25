@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.ssafy.zoom3.model.dto.Board;
 
 @Repository
-public class BoardRepoImpl implements BoardRepo {
+public class BoardRepoImpl implements BoardRepo{
 	
 	private static String ns = "com.ssafy.mapper.Board.";
 	
@@ -21,8 +21,7 @@ public class BoardRepoImpl implements BoardRepo {
 
 	@Override
 	public Board selectDetail(int boardno) {
-		
 		return temp.selectOne(ns+"selectDetail", boardno);
 	}
-	
+
 }

@@ -20,25 +20,27 @@ import com.ssafy.zoom3.model.repo.UserRepo;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationConfig.class)
 public class BoardAssociationTest {
-	
+
 	@Autowired
 	BoardRepo bRepo;
-	
+
 	@Autowired
 	UserRepo uRepo;
-	
+
 	@Test
 	public void testBoard() {
 		Board board = bRepo.selectDetail(1);
-		assertThat(board.getUser().getPass() , is("1234"));
+		if (board != null) {
+			assertThat(board.getUser().getPass(), is("1234"));
+		}
 	}
-	
+
 	@Test
 	public void testUser() {
 		UserInfo user = uRepo.selectDetail("hong");
-		if(user!=null) {
+		if (user != null) {
 			List<Board> boards = user.getBoards();
-			assertThat(boards.size(), is(1));
+			assertThat(boards.size(), is(3));
 		}
 	}
 }
