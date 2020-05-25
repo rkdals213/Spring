@@ -9,8 +9,7 @@
 </head>
 <body>
 	<h1 align="center">Welcome To SSAFY</h1>
-	<h2>상품 목록</h2>
-	
+	<h2>상품 목록</h2>	
 	<button id="selectAll">목록보기</button>
 	<ul id="products">
 	</ul>
