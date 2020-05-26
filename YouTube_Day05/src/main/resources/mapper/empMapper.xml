@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper>
+  <cache-ref namespace="my"/>
+  <!-- 주의할 사항 resultType속성 또는 parameterType송석에 명시되는 클래스는 반드시 존재해야함 -->
+  
+  <!-- 
+  	조회1 : 전체 사원의 정보(사원번호, 사원이름, 부서번호)를 보고싶다
+  	조회2 : 특정 부서의 사원 정보(사원번호, 사원이름, 부서번호)를 보고싶다
+   -->
+	<select id="selectEmp" resultType="com.ssafy.myapp.dto.Emp">
+		select empno, ename, deptno
+		from emp
+	</select>
+
+	<select id="selectAll" resultType="com.ssafy.myapp.dto.Emp">
+		select empno, ename, deptno
+		from emp
+		<if test="deptno != null">
+			where deptno=#{deptno}
+		</if>
+	</select>
+</mapper>

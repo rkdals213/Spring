@@ -19,6 +19,13 @@ public class PersonController {
 	@Autowired
 	PersonService service;
 	
+	@RequestMapping("/a")
+	public String a() {return "a";}
+	@RequestMapping("/b")
+	public String b() {return "b";}
+	@RequestMapping("/c")
+	public String c() {return "c";}
+	
 	@RequestMapping("/test")
 	public String test() {
 		return "hello"; // jsp 페이지 리턴, 포워딩
