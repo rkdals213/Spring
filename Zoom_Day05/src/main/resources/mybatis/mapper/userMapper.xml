@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.UserInfo">
+
+	<insert id="insert" parameterType="user">
+		insert into userinfo3 values(#{userid}, #{pass})
+	</insert>
+
+	<update id="update" parameterType="user">
+		update  userinfo3 set pass=#{pass} where userid=#{userid}
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		delete from userinfo3 where userid=#{userid}
+	</delete>
+
+	<select id="select" parameterType="string" resultType="user">
+		select * from userinfo3 where userid= #{userid}
+	</select>
+	
+	<select id="selectIf" parameterType="string" resultType="user">
+		select * from userinfo3 
+		<if test="userid!=null">
+			where userid= #{userid}
+		</if>
+	</select>
+	
+	<select id="selectSome" parameterType="map" resultType="user">
+		select * from userinfo3
+		<if test="users!=null">
+			where userid in
+			<foreach collection="users" item="userid" open="(" close=")" separator=",">
+				#{userid}
+			</foreach> 
+		</if>		
+	</select>
+
+	<!-- 전체 회원 정보를 가져오는 태그 구성 -->
+	<select id="selectAll" resultType="user">
+		select * from userinfo3
+	</select>
+
+	<select id="selectDetail" parameterType="string" resultMap="userDetail">
+		select u.*, b.*
+		from userinfo3 u
+		left join board b using (userid)
+		where userid=#{userid}
+	</select>
+
+	<resultMap type="user" id="userBasic">
+		<id column="userid" property="userid"></id>
+		<result column="pass" property="pass" />
+	</resultMap>
+
+	<!-- userInfo3와 board의 1:n 관계 처리 용 -->
+	<resultMap type="user" id="userDetail" extends="userBasic">
+		<collection property="boards" ofType="board" resultMap="com.ssafy.mapper.Board.basicBoardMap"></collection>
+	</resultMap>
+
+
+</mapper>
