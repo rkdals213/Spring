@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.Employee">
+
+	<select id="selectAll" resultMap="employee">
+		select e.*, d.* from s_emp e join s_dept d
+		on e.dept_id=d.dept_id
+	</select>
+	
+	<select id="select" parameterType="int" resultMap="employee">
+		select e.*, d.* from s_emp e join s_dept d
+		on e.dept_id=d.dept_id
+		where id=#{id}
+	</select>
+	
+	<update id="update" parameterType="employee">
+		update s_emp set name=#{name}, mailid=#{mailid}, manager_id=#{managerid}, title=#{title}, dept_id=#{deptid}, salary=#{salary} 
+		where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from s_emp
+		where id=#{id}
+	</delete>
+	
+	<insert id="insert" parameterType="employee">
+		insert into s_emp (id, name, mailid, manager_id, title, dept_id, salary)		
+		values (#{id}, #{name}, #{mailid}, #{managerid}, #{title}, #{deptid}, #{salary})
+	</insert>
+	
+	<resultMap type="dept" id="dept">
+		<id property="deptid" column="dept_id"/>
+		<result property="dname" column="dname"/>
+		<result property="regionid" column="region_id"/>
+	</resultMap>
+	<resultMap type="employee" id="employee">
+		<id property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="mailid" column="mailid"/>
+		<result property="startdate" column="start_date"/>
+		<result property="managerid" column="manager_id"/>
+		<result property="title" column="title"/>
+		<result property="deptid" column="dept_id"/>
+		<result property="salary" column="salary"/>
+		<result property="commissionpct" column="commission_pct"/>
+		<collection property="dept" resultMap="dept"/>
+	</resultMap>	
+	
+	
+	<select id="selectjoin" resultMap="employee">
+		select e.*, d.* from s_emp e join s_dept d
+		on e.dept_id=d.dept_id
+	</select>
+	
+	
+</mapper>

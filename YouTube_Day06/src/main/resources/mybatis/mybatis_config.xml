@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="mapUnderscoreToCamelCase" value="true" />
+		<setting name="jdbcTypeForNull" value="NULL" />
+	</settings>
+	<typeAliases>
+		<!-- 사용할 DTO들을 예약어로 등록 -->
+		<!-- typeAlias type="com.example.core.dto.Board" alias="board" /-->
+		<typeAlias type="com.ssafy.model.dto.EmployeeDto" alias="employee"/>
+		<typeAlias type="com.ssafy.model.dto.Dept" alias="dept"/>
+	</typeAliases>
+
+	<mappers>
+	<mapper resource="mybatis/mappers/EmployeeMapper.xml" />
+	</mappers>
+</configuration>
