@@ -1,3 +1,30 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@rkdals213 
+rkdals213
+/
+Spring
+1
+00
+ Code
+ Issues 0
+ Pull requests 1 Actions
+ Projects 0
+ Wiki
+ Security 0
+ Insights
+ Settings
+Spring/HomeWork_Day06/src/main/webapp/WEB-INF/views/home.jsp
+ Kang 15
+0b0e26d 4 days ago
+170 lines (158 sloc)  3.74 KB
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -13,13 +40,11 @@ td, th {
 	padding: 5px;
 	align-self: center;
 }
-
 .skyblue {
 	background-color: skyblue;
 	width: 80px;
 	text-align: left;
 }
-
 table{
 	border: 1px;
 	width: 80%;
@@ -87,7 +112,6 @@ table{
 			}
 		});
 	});
-
 	$("#bt_mod").on("click", function() {
 		$.ajax({
 			type : "put",
@@ -111,7 +135,6 @@ table{
 	$(document).on("click", "#choose", function() {
 		let id = $(this).attr("name");
 		console.log(id)
-
 		$.ajax({
 			type : "get",
 			url : "${root}product/" + id,
@@ -155,7 +178,6 @@ table{
 			}
 		});
 	}
-
 	loadProducts();
 	
 	function formToJson() {
