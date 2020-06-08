@@ -26,8 +26,8 @@
 	</delete>
 	
 	<insert id="insert" parameterType="employee">
-		insert into s_emp (id, name, mailid, manager_id, title, dept_id, salary)		
-		values (#{id}, #{name}, #{mailid}, #{managerid}, #{title}, #{deptid}, #{salary})
+		insert into s_emp (id, name, mailid, manager_id, title, dept_id, salary, start_date)		
+		values (#{id}, #{name}, #{mailid}, #{managerid}, #{title}, #{deptid}, #{salary}, #{startdate})
 	</insert>
 	
 	<resultMap type="dept" id="dept">
